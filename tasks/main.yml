@@ -1,0 +1,8 @@
+---
+# Tasks for BLANK
+
+- include: gitlab_install.yml
+  tags: [gitlab,gitlab_install,install]
+
+- include: gitlab_config.yml
+  tags: [gitlab,gitlab_config,config]

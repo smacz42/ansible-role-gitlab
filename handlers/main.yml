@@ -1,0 +1,15 @@
+---
+# Handler actions. This is typically a restart of a service.
+
+- name: Reconfigure gitlab
+  command: "gitlab-ctl reconfigure"
+
+- name: Restart gitlab
+  service:
+    name: gitlab-ctl
+    state: restarted
+
+- name: Restart postifx
+  service:
+    name: postfix
+    state: restarted

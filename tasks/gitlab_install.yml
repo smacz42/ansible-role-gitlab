@@ -1,0 +1,25 @@
+---
+
+- name: (gitlab_install) [1/4] Gitlab's package repo is added to RPM
+  script: ../files/script.rpm.sh
+  args:
+    creates: /etc/yum.repos.d/gitlab_gitlab-ce.repo
+
+- name: (gitlab_install) [2/4] Gitlab is installed
+  package:
+    name: gitlab-ce
+    state: latest
+  notify:
+    - Reconfigure gitlab
+    - Restart gitlab
+
+- name: (gitlab_install) [3/4] Postfix is installed
+  package:
+    name: postfix
+    state: latest
+
+- name: (gitlab_install) [4/4] Postfix is enabled at boot
+  service:
+    name: postfix
+    enabled: yes
+    state: started
